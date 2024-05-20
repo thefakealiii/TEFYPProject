@@ -1,0 +1,81 @@
+/*@import url('https://fonts.googleapis.com/css2?family=Ariel&display=swap');
+
+* {
+    font-family: 'Ariel', sans-serif;
+}
+
+body {
+    background-image: url("../src/components/assets/room.jpg"); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.centerdiv {
+    background-color: rgba(7, 23, 25, 0.737);
+    height: 50vh;
+    width: 50vw;
+    position: absolute;
+    top: 20%;
+    left: 25%;
+    padding-bottom: 400px;
+}
+
+.options {
+    margin-top: 5%;
+}
+
+h1 {
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+}
+
+.btncenter {
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.user {
+    margin-top: 10%;
+    height: 60vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 0;
+}
+
+.heading {
+    width: 100%;
+    text-align: center;
+    height: fit-content;
+    color: #fff;
+    position: absolute;
+    top: 50px;
+}
+
+.btn {
+    background: rgb(1, 181, 240);
+    width: 90%;
+    border-radius: 40px;
+    margin: 0 5%;
+    padding: 0 10%;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 100ms;
+    border: 3px solid grey;
+    border-radius: 40px;
+}
+
+.btn:hover {
+    background-color: cyan;
+}*/

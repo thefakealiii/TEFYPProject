@@ -1,0 +1,228 @@
+import { exec } from "child_process";
+import cors from "cors";
+import dotenv from "dotenv";
+import voice from "elevenlabs-node";
+import express from "express";
+import ffmpeg from "fluent-ffmpeg";
+import { promises as fs } from "fs";
+import OpenAI from "openai";
+import util from "util";
+
+import { path as ffmpegPath } from '@ffmpeg-installer/ffmpeg';
+import { sleep } from "openai/core";
+// Set the ffmpeg path using the @ffmpeg-installer/ffmpeg package
+ffmpeg.setFfmpegPath(ffmpegPath);
+const execCommand_ = util.promisify(exec);
+
+dotenv.config();
+
+const backendUrl = "http://localhost:3000";
+const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
+const voiceID = "21m00Tcm4TlvDq8ikWAM";
+
+const app = express();
+app.use(express.json());
+// app.use(cors({ origin: 'http://localhost:5173/', credentials: true }));
+
+const port = 3000;
+
+// Initialize OpenAI
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY || "-",
+});
+
+// Middleware to handle CORS
+app.use(cors());
+
+// Middleware to handle JSON parsing
+app.use(express.json());
+
+// Middleware to handle errors in async functions
+const asyncMiddleware = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
+
+// Convert audio to WAV format using FFmpeg
+const convertAudio = async (inputFile, outputFile) => {
+  return new Promise((resolve, reject) => {
+    ffmpeg(inputFile)
+      .toFormat("wav")
+      .on("end", () => resolve())
+      .on("error", (err) => reject(err))
+      .save(outputFile);
+  });
+};
+
+// Execute a command using child_process
+const execCommand = (command) => {
+  return new Promise((resolve, reject) => {
+    exec(
+      command,
+      { env: { PATH: "/path/to/ffmpeg-directory:" + process.env.PATH } },
+      (error, stdout, stderr) => {
+        if (error) reject(error);
+        resolve(stdout);
+      }
+    );
+  });
+};
+
+
+
+
+const lipSyncMessage = async (message) => {
+  console.log(message);
+  const time = new Date().getTime();
+
+  // Sanitize the message for filename
+  const sanitizedMessage = message.replace(/[^a-zA-Z0-9]/g, '_');
+
+  console.log(`Starting conversion for message ${sanitizedMessage}`);
+
+  try {
+    await new Promise((resolve, reject) => {
+      ffmpeg()
+        .input(`audios/message_${0}.mp3`)
+        .output(`audios/message_${0}.wav`)
+        .on('end', resolve)
+        .on('error', (err) => {
+          reject(new Error(`FFmpeg Error: ${err}`));
+        })
+        .run();
+    });
+  } catch (error) {
+    console.error('Error converting audio:', error.message);
+   
+  }
+
+  console.log(`Conversion done in ${new Date().getTime() - time}ms`);
+
+  const jsonFilePath = `audios/message_${0}.json`;
+  // if (!fs.existsSync(jsonFilePath)) {
+  //   console.error(`Error: JSON file not found at ${jsonFilePath}`);
+  //   return;
+  // }
+
+  try {
+    await execCommand_(
+      `"./Rhubarb-Lip-Sync-1.13.0-Windows/rhubarb.exe" -f json -o "${jsonFilePath}" "audios/message_${0}.wav" -r phonetic`
+    );
+  } catch (error) {
+    console.error('Error running Rhubarb:', error.message);
+    return;
+  }
+
+  console.log(`Lip sync done in ${new Date().getTime() - time}ms`);
+};
+
+
+// Read JSON transcript from a file
+const readJsonTranscript = async (file) => {
+  const data = await fs.readFile(file, "utf8");
+ 
+  return JSON.parse(data);
+};
+
+// Convert audio file to base64
+const audioFileToBase64 = async (file) => {
+  const data = await fs.readFile(file);
+  return data.toString("base64");
+};
+
+// Route to get available voices
+app.get("/voices", async (req, res) => {
+  res.send(await voice.getVoices(elevenLabsApiKey));
+});
+
+// Route to handle chat messages
+app.post(
+  "/chat",
+  asyncMiddleware(async (req, res) => {
+    const userMessage = req.body.message;
+    // console.log(userMessage);
+
+    if (!userMessage) {
+      res.send({
+        messages: [
+          // ... your default messages
+        ],
+      });
+      return;
+    }
+
+    if (!elevenLabsApiKey || openai.apiKey === "-") {
+      res.send({
+        messages: [
+          // ... messages for missing API keys
+        ],
+      });
+      return;
+    }
+
+    // OpenAI ChatGPT completion
+    const completion = await openai.chat.completions.create({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: `
+        You are a virtual girlfriend.
+        You will always reply with a JSON array of messages. With a maximum of 3 messages.
+        Each message has a text, facialExpression, and animation property.
+        The different facial expressions are: smile, sad, angry, surprised, funnyFace, and default.
+        The different animations are: Talking_0, Talking_1, Talking_2, Crying, Laughing, Rumba, Idle, Terrified, and Angry. 
+        `,
+        },
+        {
+          role: "user",
+          content: userMessage || "Hello",
+        },
+      ],
+    });
+
+    let messages = JSON.parse(completion.choices[0].message.content);
+
+    if (messages.messages) {
+      messages = messages.messages;
+    }
+    console.log(messages[0]["text"]);
+    // Process and send messages
+    for (let i = 0; i < messages.length; i++) {
+      const message = messages[0];
+      const fileName = `audios/message_${0}.mp3`;
+      const textInput = message.text;
+
+      // Generate audio file
+      try {
+        await voice.textToSpeech(elevenLabsApiKey, voiceID, fileName, textInput);
+        await lipSyncMessage(message.text);
+
+        // After lip sync is done, send the response
+        const audioBase64 = await audioFileToBase64(`audios/message_${i}.mp3`);
+        const lipsyncData = await readJsonTranscript(`audios/message_${i}.json`);
+
+        res.send({
+          messages: [
+            {
+              text: message.text,
+              audio: audioBase64,
+              lipsync: lipsyncData,
+              facialExpression: message.facialExpression,
+              animation: message.animation,
+            },
+          ],
+        });
+
+      } catch (err) {
+        console.log(err.message);
+        res.status(500).send({ error: "Error generating audio or lip sync" });
+        return;
+      }
+    }
+  })
+);
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Virtual Talks listening on port ${port}`);
+});

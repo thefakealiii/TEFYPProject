@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Ariel&display=swap');
+*{
+    font-family: 'Ariel', sans-serif;
+}
+.logout{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+body{
+    background-color: #000;
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow:hidden;
+}
+
+
+
+
+h1{
+    text-align: left;
+    color: #fff;
+    font-size: 40px;
+
+}
+
+.container{
+
+    height: 100vh;
+    width: 100%;
+    background: url("C:\Users\Mohd Irfan\Documents\Custom Office Templates\OneDrive\Videos\fyp5\client\src\components\assets\home.jpeg");
+    background-size: cover;
+    display: flex;
+
+}
+.user{
+margin-left: 0%;
+margin-right: 50%;
+margin-top: 15%;
+height: 60vh;
+width: 40%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+left: 0;
+
+
+}
+
+.heading {
+    width: 40%;
+    margin-top: 5%;
+    text-align: left;
+    padding-left: 4%;
+    height: fit-content;
+    color: #f5ebf4;
+    padding-top: 10%;
+    position: absolute;
+    top: 50px;
+  
+    text-shadow: 
+        1px 1px 0 #000,   /* top-left shadow */
+        -1px 1px 0 #000,  /* top-right shadow */
+        1px -1px 0 #000,  /* bottom-left shadow */
+        -1px -1px 0 #000, /* bottom-right shadow */
+        1px 0 0 #000,     /* left shadow */
+        0 1px 0 #000,     /* top shadow */
+        -1px 0 0 #000,    /* right shadow */
+        0 -1px 0 #000;  ;
+  }
+  
+  
+
+.btn{
+    width: 500%;
+    border-radius: 30px;
+    margin-left: 50px;
+    padding-left: 60px;
+    padding-right: 60px;
+    text-align: left;
+    text-decoration: none;
+    border: none;
+    background-color:var(--primary-color);
+    box-shadow: 10px 10px 4px 4px #a0046ce5;
+    color: #c9bac4;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 100ms;
+    border: 3px solid rgb(95, 21, 179);
+    border-radius: 40px;
+    text-shadow: 
+        1px 1px 0 #000,   /* top-left shadow */
+        -1px 1px 0 #000,  /* top-right shadow */
+        1px -1px 0 #000,  /* bottom-left shadow */
+        -1px -1px 0 #000, /* bottom-right shadow */
+        1px 0 0 #000,     /* left shadow */
+        0 1px 0 #000,     /* top shadow */
+        -1px 0 0 #000,    /* right shadow */
+        0 -1px 0 #000;  
+} 
+.btn:hover{
+    background:linear-gradient(to right, #8a2be2 , #c71585)
+     
+}
+
+
+
+
+img{
+    position: absolute;
+    top: 15%;
+    margin-bottom: 200px;
+    margin-left: 100px;
+    /* border: 10px solid red; */
+    filter: drop-shadow(10px 10px 10px 20px rgb(255, 0, 21));
+}
+
+.typinganimation {
+    overflow: hidden;
+    white-space: nowrap;
+    
+    border-right: 2px solid #000;
+    font-size: 24px;
+    animation: typing 4s steps(30, end);
+    word-wrap: break-word;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}

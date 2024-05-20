@@ -1,0 +1,160 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ariel&display=swap');
+*{
+    font-family: 'Ariel', sans-serif;
+}
+.heading {
+    width: 100%;
+    text-align: center;
+    height: fit-content;
+    color: white;
+    text-shadow: 
+        1px 1px 0 #000,   /* top-left shadow */
+        -1px 1px 0 #000,  /* top-right shadow */
+        1px -1px 0 #000,  /* bottom-left shadow */
+        -1px -1px 0 #000, /* bottom-right shadow */
+        1px 0 0 #000,     /* left shadow */
+        0 1px 0 #000,     /* top shadow */
+        -1px 0 0 #000,    /* right shadow */
+        0 -1px 0 #000;    /* bottom shadow */
+}
+
+/* styles.css */
+.googleloginbutton {
+   /* background-color: #4285f4;*/
+    color: white;
+    box-shadow: 10px 10px 4px 4px #a0046ce5;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .google-login-button img {
+    margin-right: 10px;
+  }
+
+  .container {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%; /* Ensure the width covers the full viewport */
+    background-image: url("C:\Users\Mohd Irfan\Documents\Custom Office Templates\OneDrive\Videos\fyp5\client\src\components\assets\login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containers {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 100vh;
+    width: 100%; /* Ensure the width covers the full viewport */
+    background-image: url("C:\Users\Mohd Irfan\Documents\Custom Office Templates\OneDrive\Videos\fyp5\client\src\components\assets\login.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Optional: Add smoothing properties */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+.innerBox {
+    min-width: 600px;
+    height: fit-content;
+    width: fit-content;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    /* Creating a 3D box shadow effect */
+    box-shadow: 
+        4px 4px 4px 0px #a0046ce5, /* Top-left shadow */
+        8px 8px 8px 0px #a0046ce5, /* Bottom-right shadow */
+        -4px -4px 4px 0px #a0046ce5 /* Inner highlight */
+    ;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer button {
+    padding: 10px;
+    border: none;
+    background-color: white;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 100ms;
+    border-radius: 20px; /* Adjust the value to control the roundness of corners */
+}
+
+.footer button:hover {
+    box-shadow: 0 0 10px 4px #a0046ce5;
+    background-color: transparent;
+}
+.footer p span {
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+.footer p span a{
+    color:black;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+  
+
+    
+}
+
+.footer p span a:hover{
+ 
+    box-shadow: 4px 4px 4px 4px #a0046ce5;
+    
+    
+}
+.footer span link{
+    color: purple;
+    font-weight: 700;
+    cursor: pointer;
+
+}
+.footer .error{
+    color: red;
+    font-weight: 700;
+    cursor: pointer;
+}
+.footer button :disabled{
+    cursor: not-allowed;
+    background-color: gray !important;
+    color: transparent;
+    box-shadow: 4px 4px 4px 4px #a0046ce5;
+
+}
+.error{
+    font-size: small;
+    color: red;
+    cursor: pointer;
+    text-emphasis: none;
+}

@@ -1,0 +1,81 @@
+.output_response{
+    color: white;
+    float: left;
+    padding: 10px;
+    margin: 5px;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.input{
+    color: white;
+    float: right;
+    padding: 10px;
+    margin: 5px;
+    background-color:rgb(22, 49, 22);
+    border-radius: 10px;
+}
+h4{
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+
+ }
+ .optionbox {
+    position: absolute;
+    right: 0;
+    top: 0%;
+    width: auto; /* Adjust width to fit button content */
+    height: auto; /* Adjust height to fit button content */
+    padding: 10px 20px; /* Add padding for better button appearance */
+    margin: 5px;
+    z-index: 10000;
+    border: none; /* Remove border if present */
+    border-radius: 10px;
+    background-color: transparent; /* Background color for the button */
+    color: white; /* Text color */
+    font-size: 16px; /* Adjust font size */
+    text-align: left; /* Center text */
+    cursor: pointer; /* Change cursor to pointer */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+    box-shadow: 0 0 10px 4px black;
+}
+
+.optionbox:hover {
+    background-color: rgba(1, 0, 0, 0.9); /* Darker background on hover */
+}
+
+
+.optionbox::-webkit-scrollbar{
+    background: rgba(1, 0, 0, 0.437);
+    width:5px;
+
+}
+
+label {
+    color: white;}
+
+.showbox{
+    background: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 31%;
+    height: 50vh;
+    overflow: scroll;
+    position: absolute;
+    top: 20%;
+    left:1%;
+    box-shadow: 0 0 10px 4px black;
+
+}
+.showbox::-webkit-scrollbar{
+    background: rgba(1, 0, 0, 0.437);
+    width:5px;
+
+}
+.showbox::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 10px;
+}

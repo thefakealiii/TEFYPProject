@@ -1,0 +1,127 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Ariel&display=swap');
+*{
+    font-family: 'Ariel', sans-serif;
+}
+
+
+
+.selected {
+    background-color: #c10d0d; /* Change the background color */
+    color: #fff; /* Change the text color */
+    font-weight: bold; /* Make the text bold */
+    border: 2px solid #007bff; /* Add border to visually highlight the button */
+    border-radius: 5px; /* Optional: Add border-radius for rounded corners */
+  }
+
+
+body{
+   
+    background-size: cover;
+    background-repeat: no-repeat;
+    overflow:hidden;
+    background-image: url("C:\Users\Mohd Irfan\Documents\Custom Office Templates\OneDrive\Videos\fyp5\client\src\components\assets\room.jpg") ;
+}
+
+
+
+.options{
+    margin-top: 5%;
+  
+}
+
+
+
+.btnSelected {
+    /* Your styles for selected button */
+    background-color: lightblue; /* Change background color to light blue when selected */
+    color: white; /* Change text color to white when selected */
+    /* Add any other styles you want to apply to the selected button */
+}
+
+
+h1{
+    text-align: center;
+    color: #fff;
+    font-size: 40px;
+
+}
+.btncenter{
+    width: 50%;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.container{
+
+    height: 100%;
+    width: 100%;
+    /*background: url("../assets/room.jpg");*/
+    background-size: contain;
+    display: flex;
+
+}
+.user{
+margin-top: 10%;
+height: 60vh;
+width: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+position: relative;
+left: 0;
+
+
+}
+
+
+
+.heading{
+    width: 100%;
+    text-align: center;
+    height: fit-content;
+    color: #fff;
+
+    position: absolute;
+    top: 50px;
+}
+
+.btn{
+    background: rgb(1, 181, 240);
+    width: 90%;
+    border-radius: 40px;
+    margin: 0 5%;
+    padding:0 10%;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 100ms;
+    border: 3px solid grey;
+    border-radius: 40px;
+}
+.btn:hover{
+    background-color:cyan
+    
+}
+
+
+
+.earthimg img{
+    position: relative;
+            filter: drop-shadow(5px 5px 120px blue);
+  
+
+}
+img{
+    position: absolute;
+    top: 15%;
+    margin-bottom: 200px;
+    margin-left: 100px;
+    /* border: 10px solid red; */
+    filter: drop-shadow(10px 10px 10px 20px rgb(255, 0, 21));
+}
+
