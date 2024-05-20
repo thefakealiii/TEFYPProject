@@ -22,7 +22,7 @@ const execCommand_ = util.promisify(exec);
 
 dotenv.config();
 
-const backendUrl = "http://localhost:3000";
+const backendUrl = "https://asdafafwa.vercel.app";
 const elevenLabsApiKey = process.env.ELEVEN_LABS_API_KEY;
 
 
