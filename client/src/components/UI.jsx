@@ -31,7 +31,7 @@ export const UI = ({ hidden, selectedObject }) => {
     formData.append('file', selectedFile.target.files[0]);
   
     try {
-      const response = await axios.post('http://localhost:3000/upload', formData, {
+      const response = await axios.post('https://asdafafwa.vercel.app/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -82,7 +82,7 @@ export const UI = ({ hidden, selectedObject }) => {
 
   const fetchData = useCallback(async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/data');
+      const response = await fetch('http://asdafafwa.vercel.app/api/data');
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
@@ -143,7 +143,7 @@ export const UI = ({ hidden, selectedObject }) => {
     const model = e.target.value;
     setSelectedModel(model);
 
-    const response = await axios.post('http://localhost:3000/voice', { model });
+    const response = await axios.post('http://asdafafwa.vercel.app/voice', { model });
     console.log('Data sent successfully:', response.data);
   };
 
