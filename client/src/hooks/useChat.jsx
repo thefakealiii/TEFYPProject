@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-const backendUrl = "https://asdafafwa-adpsnetj5-ali-afzals-projects.vercel.app";
+const backendUrl = "https://asdafafwa.vercel.app";
 
 const ChatContext = createContext();
 
